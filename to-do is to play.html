@@ -10,6 +10,9 @@
   <span onclick="newElement()" class="addBtn">Add</span>
 </div>
 
+<label for="file">Completion of tasks:</label>
+<progress id="file" value=checked/total max="100"></progress>
+
 <div class="myDIV">
   <ul id="myUL">
     <li>Finish homework</li>
@@ -20,9 +23,12 @@
     <li>Sleep</li>
   </ul>
 </div>
-
 <div class="hide">60 gems</div>
+
+
+
 <script>
+var total = 0;
 // Create a "close" button and append it to each list item
 var myNodelist = document.getElementsByTagName("LI");
 var i;
@@ -41,19 +47,23 @@ for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     var div = this.parentElement;
     div.style.display = "none";
+    total--;
   }
 }
 
 // Add a "checked" symbol when clicking on a list item
 var list = document.querySelector('ul');
+var checked = 0;
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
+    chcked++;
   }
 }, false);
 
 // Create a new list item when clicking on the "Add" button
 function newElement() {
+
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
   var t = document.createTextNode(inputValue);
@@ -62,6 +72,7 @@ function newElement() {
     alert("You must write something!");
   } else {
     document.getElementById("myUL").appendChild(li);
+    total++;
   }
   document.getElementById("myInput").value = "";
 
@@ -79,11 +90,6 @@ function newElement() {
   }
 }
 
-// When the user clicks on <div>, open the popup
-  function myFunction() {
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
-  }
 
 </script>
 </body>
